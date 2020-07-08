@@ -11,7 +11,7 @@ from resources.user import UserRegister
 from resources.items import Item, ItemList
 from resources.store import StoreList, Store
 
-from db import db
+
 '''
     activate virtual env(windows): .\venv\Scripts\activate
 '''
@@ -22,10 +22,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:/
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'secret_key'
 api = Api(app)
-
-@app.before_first_request
-def create_tablels():
-    db.create_all()
 
 jwt = JWT(app, authenticate, identity)
 # Every thing that our api deals is called a REsource
